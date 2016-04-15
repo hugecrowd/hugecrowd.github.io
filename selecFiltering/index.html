@@ -1,0 +1,75 @@
+
+<style>
+.inputSelect{
+  position: relative;
+  width: 190px;
+}
+
+.inputContainer, .arrowContainer{
+  float: left;
+}
+
+.arrowContainer{
+  width: 17px;
+}
+
+.arrowImag{
+  width: 17px;
+  background-image: url('arrow.jpg');
+  background-position: -117px -53px;
+  background-repeat: no-repeat;
+}
+
+.optionList{
+  position: absolute;
+  top: 21px;
+  width: 190px;
+  border: 1px solid;
+  border-color: rgb(238, 238, 238);
+  background-color: #fff;
+}
+.optionList ul{
+  list-style-type:none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.optionList li{
+  list-style: none;
+  width: 100%;
+  height: 21px;
+}
+.optionList li:hover, .optionList li .filtering{
+  cursor: hand;
+  background-color: #87CEEA;
+}
+.optionList li.selected{
+  background-color: #87CEEF;
+}
+</style>
+
+Field1: 
+<div class="inputSelect">
+	<div class="inputContainer"><input type="text" id="inputField" /></div>
+	<div class="arrowContainer"><input type="button" class="arrowImag" /></div>
+</div>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+Field2: 
+<div class="inputSelect">
+	<div class="inputContainer"><input type="text" id="inputField1" /></div>
+	<div class="arrowContainer"><input type="button" class="arrowImag" /></div>
+</div>
+
+<script src="selectFiltering.js"></script>
+<script>
+var options1 = [
+	"The first option",
+	"What you want?",
+	"I have no idea",
+	"Don't be shy",
+	"Come on!, please say"
+];
+var option1 = {id: "inputField", data: options1};
+var option2 = {id: "inputField1", data: options1};
+window.selectFiltering(option1,option2);
+</script>
