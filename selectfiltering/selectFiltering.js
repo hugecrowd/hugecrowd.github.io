@@ -55,7 +55,7 @@
 					var objLI = this.domOptionsList.getElementsByTagName("li");
 					for(var i=0; i < objLI.length; i++){
 						if(objLI[i].className == "selected"){
-							this.domInput.value = objLI[i].innerText;
+							this.domInput.value = objLI[i].dataset.value;
 							this.domOptionsList.style.display = "none";
 							break;
 						}
@@ -125,6 +125,7 @@
 				this.addEventListener(objUL, 'click', function(event){
 					var target = event.target || event.srcElement;
 					if(target.nodeName == "LI"){
+						console.log(target);
 						that.domInput.value = target.dataset.value;
 						that.domOptionsList.style.display = "none";
 					}
