@@ -40,12 +40,13 @@
 			var target = event.target || event.srcElement;
 			var keyCode = event.keyCode || event.which;
 			if( keyCode != 13 && keyCode != 38 && keyCode != 40 ){
+				var objReg = new RegExp(target.value, "i");
 				var filteredOptions = this.data.filter(function(value){
-					return value.toLowerCase().indexOf(target.value.toLowerCase()) > -1;
+					return objReg.test(value);
 				});
 				var filteredOptList = "";
 				filteredOptions.forEach(function(value){
-					var temp = value.replace(target.value, "<span class=filtering>" + target.value + "</span>");
+					var temp = value.replace(objReg, "<span class=filtering>$&</span>");
 					filteredOptList += "<li data-value=\""+value+"\">"+ temp + "</li>";
 				});
 				this.buildOptionsList(filteredOptList);
@@ -110,12 +111,13 @@
 			if(option != ""){
 				optionsList = "<ul>"+ option + "</ul>";
 				
-				var optionsListEle = document.createElement("div");
-				optionsListEle.id = this.optionListId;
-				optionsListEle.className = "optionList";
-				this.domInput.parentNode.appendChild(optionsListEle);
-				
-				this.domOptionsList = document.getElementById(this.optionListId);
+				if(!this.domOptionsList){
+					var optionsListEle = document.createElement("div");
+					optionsListEle.id = this.optionListId;
+					optionsListEle.className = "optionList";
+					this.domInput.parentNode.appendChild(optionsListEle);
+					this.domOptionsList = document.getElementById(this.optionListId);
+				}
 				this.domOptionsList.innerHTML = optionsList;
 				this.domOptionsList.style.display = "block";
 				
